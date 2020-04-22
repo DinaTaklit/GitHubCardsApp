@@ -12,7 +12,7 @@ const testData = [
 const CardList = (props) => {
   return(
     <div>
-    {testData.map((profile)=>{
+    {props.profiles.map((profile)=>{
       return(
         <Card {...profile} />
       )
@@ -56,7 +56,7 @@ class App extends Component {
       <div>
         <div className="header">{this.props.title}</div>
         <Form/>
-        <CardList />
+        <CardList profiles={testData}/>
       </div>
     );
   }
