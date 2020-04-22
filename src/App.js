@@ -20,7 +20,18 @@ const CardList = (props) => {
   </div>
   )
 }
-
+// Create form Componenet 
+class Form extends React.Component{
+  render(){
+    return(
+      <form action="">
+        <input type="text" placeholder="Github username">
+        </input>
+        <buttton> Add Card</buttton>
+      </form>
+    );
+  }
+}
 // Create card component 
 class Card extends React.Component{
   render(){
@@ -44,6 +55,7 @@ class App extends Component {
     return (
       <div>
         <div className="header">{this.props.title}</div>
+        <Form/>
         <CardList />
       </div>
     );
