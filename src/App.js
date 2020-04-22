@@ -50,12 +50,18 @@ class Card extends React.Component{
 
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      profiles:testData,
-    };
-  }
+  // constructor(props){
+  //   super(props);
+  //   this.state = {
+  //     profiles:testData,
+  //   };
+  // }
+
+  // shorter version class field
+  state = {
+    profiles: testData,
+  };
+  
   render() {
     return (
       <div>
