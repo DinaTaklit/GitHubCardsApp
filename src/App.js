@@ -36,7 +36,6 @@ class Form extends React.Component{
 class Card extends React.Component{
   render(){
     const profile = this.props;
-
     return(
       <div className="github-profile">  
         <img src={profile.avatar_url}/> 
@@ -51,12 +50,18 @@ class Card extends React.Component{
 
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      profiles:testData,
+    };
+  }
   render() {
     return (
       <div>
         <div className="header">{this.props.title}</div>
         <Form/>
-        <CardList profiles={testData}/>
+        <CardList profiles={this.state.profiles}/>
       </div>
     );
   }
