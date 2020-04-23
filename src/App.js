@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 
-// Use this data for premier test  
-const testData = [
-  {name: "Dan Abramov", avatar_url: "https://avatars0.githubusercontent.com/u/810438?v=4", company: "@facebook"},
-  {name: "Sophie Alpert", avatar_url: "https://avatars2.githubusercontent.com/u/6820?v=4", company: "Humu"},
-  {name: "Sebastian Markbåge", avatar_url: "https://avatars2.githubusercontent.com/u/63648?v=4", company: "Facebook"},
-];
+// GitHub usernames: gaearon, sophiebits, sebmarkbage, bvaughn
 
 // Create card list component 
 const CardList = (props) => {
@@ -30,7 +25,7 @@ class Form extends React.Component{
   handleSubmit = async (event) => {
     event.preventDefault();
     const resp = await axios.get(`https://api.github.com/users/${this.state.userName}`);
-    console.log(resp.data)
+    this.props.onSubmit(resp.data);
   }
   render(){
     return(
@@ -75,14 +70,20 @@ class App extends Component {
 
   // shorter version class field
   state = {
-    profiles: testData,
+    profiles: [],
   };
+
+  addNewProfile = (profileData) => {
+    this.setState(prevState => ({
+        profiles: [...prevState.profiles, profileData],
+    }));
+  }
   
   render() {
     return (
       <div>
         <div className="header">{this.props.title}</div>
-        <Form/>
+        <Form onSubmit={this.addNewProfile}/>
         <CardList profiles={this.state.profiles}/>
       </div>
     );
