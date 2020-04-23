@@ -23,11 +23,13 @@ const CardList = (props) => {
 
 // Create form Componenet 
 class Form extends React.Component{
-  userNameInput = React.createRef();
+  state = {
+    userName: '',
+  };
   handleSubmit = (event) => {
     event.preventDefault();
     console.log(
-      this.userNameInput.current.value
+        this.state.userName
       )
   }
   render(){
@@ -35,7 +37,9 @@ class Form extends React.Component{
       // Since we used on Submit method we can use html tags like required ...etc
       <form onSubmit={this.handleSubmit}>
         <input type="text" placeholder="Github username" 
-        ref = {this.userNameInput} 
+        value = {this.state.userName}
+        // this way allow React to control things instead of the previous DOM logic
+        onChange = {event => this.setState({userName: event.target.value})} // we can the value from the dom directly
         required
         />
         <button> Add Card</button>
