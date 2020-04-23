@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
 
 // Use this data for premier test  
 const testData = [
@@ -26,11 +27,10 @@ class Form extends React.Component{
   state = {
     userName: '',
   };
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(
-        this.state.userName
-      )
+    const resp = await axios.get(`https://api.github.com/users/${this.state.userName}`);
+    console.log(resp.data)
   }
   render(){
     return(
